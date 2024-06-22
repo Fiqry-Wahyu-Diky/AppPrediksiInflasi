@@ -11,7 +11,7 @@ showWarningOnDirectExecution = False
 with st.sidebar:
     selected = option_menu(
         menu_title="MENU",
-        options=["HOME", "BI", "DATASET", "MODEL", "PREDIKSI"],
+        options=["HOME", "BI", "DATASET", "MODELING", "PREDIKSI"],
         icons=["house", "bar-chart", "table", "robot", "graph-up"],  # add the icons
         menu_icon="cast",  # optional
         default_index=0,  # optional
