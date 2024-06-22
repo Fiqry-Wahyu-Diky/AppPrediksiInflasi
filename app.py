@@ -7,6 +7,17 @@ import joblib
 
 
 showWarningOnDirectExecution = False
+st.markdown(
+            """
+            <style>
+            .highlight {
+                background-color: rgba(105, 211, 0, 0.3); /* Warna dengan transparansi 50% */
+
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
 with st.sidebar:
     selected = option_menu(
@@ -96,18 +107,6 @@ if selected == 'DATASET':
 
     with dataset:
         st.markdown(
-            """
-            <style>
-            .highlight {
-                background-color: yellow;
-                font-weight: bold;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
             '<p style="text-align: justify;">'
             'Data Inflasi diambil dari data historis Web Bank Indonesia. Pengamatan data inflasi Indonesia ini mencakup '
             '<span class="highlight">tanggal 01-01-2003 hingga 01-05-2024</span>. '
@@ -116,23 +115,55 @@ if selected == 'DATASET':
             '</p>',
             unsafe_allow_html=True
         )
-        
+
         dataset = pd.read_excel("data/dataset inflasi indonesia.xlsx")
         st.dataframe(dataset)
         st.info(f"Banyak Dataset : {len(dataset)}")
         st.warning(f'Informasi Dataset')
         st.write(dataset.describe())
+
     with visual:
         st.success("### Ploting Dataset")
+        st.markdown(
+            '<p style="text-align: justify;">'
+            'Data ditampilkan dalam bentuk grafik seperti di bawah ini.'
+            '</p>',
+            unsafe_allow_html=True
+        )
+
         st.image('data/img/plot dataset.png')
+        st.markdown(
+            '<p style="text-align: justify;">'
+            'Grafik data terlihat berfluktuasi seiring waktu. dimana lonjakan Inflasi tertinggi terjadi pada tahun 2005 hingga 2006.'
+            '</p>',
+            unsafe_allow_html=True
+        )
 
     with acf:
         st.success("### Ploting Autokorelasi (ACF)")
+        st.markdown(
+            '<p style="text-align: justify;">'
+            '<b> Autocorrelation Function (ACF)</b> adalah sebuah metode statistik yang digunakan untuk mengevaluasi korelasi antara sebuah seri data dengan versi mundurnya sendiri pada berbagai lag interval waktu. Dalam analisis deret waktu, ACF berguna untuk memahami pola ketergantungan antara nilai-nilai yang berdekatan dalam deret waktu tersebut.'
+            '</p>',
+            unsafe_allow_html=True
+        )
         st.image('data/img/acf.png')
 
     with pacf:
         st.success("### Ploting Parsial Autokorelasi (PACF)")
+        st.markdown(
+            '<p style="text-align: justify;">'
+            '<b> Partial Autocorrelation Function (PACF)</b> adalah metode statistik yang mirip dengan Autocorrelation Function (ACF), namun lebih fokus pada hubungan langsung antara suatu nilai dalam deret waktu dengan nilai pada lag tertentu, setelah menghilangkan efek dari nilai-nilai di antara keduanya.'
+            '</p>',
+            unsafe_allow_html=True
+        )
         st.image('data/img/pacf.png')
+        st.markdown(
+            '<p style="text-align: justify;">'
+            'Dari hasil PACF untuk membuat model maka nilai yang berada diluar batas signifikan akan digunakan sebagai pembuatan sliding window. Hal ini bertujuan agar data dapat diolah oleh model yang digunakan. Nilai-nilai yang berada diluar batas signifikan yaitu:<span class="highlight"> 1, 2, 4, 8, dan 13.</span>'
+            '</p>',
+            unsafe_allow_html=True
+        )
 
 # ======= model ==============
 if selected == 'MODELING':
@@ -155,9 +186,21 @@ if selected == 'MODELING':
             st.write(f"Banyak data test : {len(dfprediksiS1)} data")
 
             st.info("#### Histori dari skenario 1")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Untuk histori pembuatan model skenario 1 dapat dilihat dibawah ini. Record yang disimpan merupakan pengujian dari kombinasi parameter yang mencapai <span class="highlight"> 648 Iterasi.</span>'
+                '</p>',
+                unsafe_allow_html=True
+            )
             st.write(dfhistoriS1)
 
             st.info("##### Parameter terbaik yaitu:")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Dari percobaan tersebut didapatkan parameter terbaik dengan tingkat kesalahan terendah sebagai berikut.'
+                '</p>',
+                unsafe_allow_html=True
+            )
             idmax = dfhistoriS1['MAPE-denorm(%)'].idxmin()
             st.write(dfhistoriS1.iloc[idmax,1:7])
 
@@ -167,6 +210,12 @@ if selected == 'MODELING':
 
         with visual:
             st.info("##### Visualisasi grafik")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Hasil peramalan dalam pengujian yang didapatkan akan dituangkan dalam grafik dan tabel berikut.</span>'
+                '</p>',
+                unsafe_allow_html=True
+            )
             st.image("data/img/grafikS1.png")
 
             st.info("##### Tabel Aktual dan Prediksi")
@@ -190,9 +239,22 @@ if selected == 'MODELING':
             st.write(f"Banyak data test : {len(dfprediksiS2)} data")
 
             st.info("#### Histori dari skenario 2")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Untuk histori pembuatan model skenario 2 dapat dilihat dibawah ini. Record yang disimpan merupakan pengujian dari kombinasi parameter yang mencapai <span class="highlight"> 648 Iterasi.</span>'
+                '</p>',
+                unsafe_allow_html=True
+            )
             st.write(dfhistoriS2)
 
             st.info("##### Parameter terbaik yaitu:")
+            st.info("##### Parameter terbaik yaitu:")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Dari percobaan tersebut didapatkan parameter terbaik dengan tingkat kesalahan terendah sebagai berikut.'
+                '</p>',
+                unsafe_allow_html=True
+            )
             idmax = dfhistoriS2['MAPE-denorm(%)'].idxmin()
             st.write(dfhistoriS2.iloc[idmax,1:7])
 
@@ -202,6 +264,12 @@ if selected == 'MODELING':
 
         with visual:
             st.info("##### Visualisasi grafik")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Hasil peramalan dalam pengujian yang didapatkan akan dituangkan dalam grafik dan tabel berikut.</span>'
+                '</p>',
+                unsafe_allow_html=True
+            )
             st.image("data/img/grafikS2.png")
 
             st.info("##### Tabel Aktual dan Prediksi")
@@ -224,9 +292,21 @@ if selected == 'MODELING':
             st.write(f"Banyak data test : {len(dfprediksiS3)} data")
 
             st.info("#### Histori dari skenario 3")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Untuk histori pembuatan model skenario 3 dapat dilihat dibawah ini. Record yang disimpan merupakan pengujian dari kombinasi parameter yang mencapai <span class="highlight"> 648 Iterasi.</span>'
+                '</p>',
+                unsafe_allow_html=True
+            )
             st.write(dfhistoriS3)
 
             st.info("##### Parameter terbaik yaitu:")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Dari percobaan tersebut didapatkan parameter terbaik dengan tingkat kesalahan terendah sebagai berikut.'
+                '</p>',
+                unsafe_allow_html=True
+            )
             idmax = dfhistoriS3['MAPE-denorm(%)'].idxmin()
             st.write(dfhistoriS3.iloc[idmax,1:7])
 
@@ -236,6 +316,12 @@ if selected == 'MODELING':
 
         with visual:
             st.info("##### Visualisasi grafik")
+            st.markdown(
+                '<p style="text-align: justify;">'
+                'Hasil peramalan dalam pengujian yang didapatkan akan dituangkan dalam grafik dan tabel berikut.</span>'
+                '</p>',
+                unsafe_allow_html=True
+            )
             st.image("data/img/grafikS3.png")
 
             st.info("##### Tabel Aktual dan Prediksi")
