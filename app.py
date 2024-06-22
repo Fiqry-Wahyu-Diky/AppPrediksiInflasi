@@ -252,7 +252,7 @@ if selected == 'PREDIKSI':
         denormpredict = modelnormalisasi.inverse_transform(prediksi.reshape(-1,1))
 
         st.write(f"Hasil peramalan inflasi bulan depan sebesar: ")
-        st.info(f"{round(denormpredict[0,0],2)}%")
+        st.success(f"{round(denormpredict[0,0],2)}%")
 
         if st.button("Reset"):
             t1 = 0
