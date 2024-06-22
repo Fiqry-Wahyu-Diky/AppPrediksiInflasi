@@ -95,6 +95,9 @@ if selected == 'DATASET':
     dataset, visual, acf, pacf = st.tabs(["Data", "Visualisasi", "ACF", "PACF"])
 
     with dataset:
+        st.markdown(
+            '<p style = "text-align: justify;"> <b> Data Inflasi </b> diambil dari data historis Web Bank Indonesia. Pengamatan data inflasi Indonesia ini mencakup tanggal 01-01-2003 hingga 01-05-2024. Data ini dikumpulkan dan dipublikasikan oleh Bank Indonesia sebagai bagian dari upaya mereka untuk memantau dan mengelola stabilitas ekonomi negara.</p>',
+            unsafe_allow_html=True)
         dataset = pd.read_excel("data/dataset inflasi indonesia.xlsx")
         st.dataframe(dataset)
         st.info(f"Banyak Dataset : {len(dataset)}")
