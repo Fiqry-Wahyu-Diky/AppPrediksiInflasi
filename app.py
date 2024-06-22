@@ -91,6 +91,7 @@ if selected == "BI":
 # # ====================== Dataset ====================
 if selected == 'DATASET':
     st.write("# DATASET")
+    st.write("Pada halaman ini akan berisi tentang Informasi Dataset yang digunakan. Mulai dari banyak dataset, visual datasetm analisis korelasi ACF, dan analisis korelasi PACF.")
     dataset, visual, acf, pacf = st.tabs(["Data", "Visualisasi", "ACF", "PACF"])
 
     with dataset:
