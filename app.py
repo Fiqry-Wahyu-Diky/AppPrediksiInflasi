@@ -112,7 +112,7 @@ if selected == 'DATASET':
         st.image('data/img/pacf.png')
 
 # ======= model ==============
-if selected == 'MODEL':
+if selected == 'MODELING':
     st.write("## Model Ensemble SVR (Support Vector Regression)")
     skenario1, skenario2, skenario3 = st.tabs(['Skenario 1','Skenario 2','Skenario 3'])
     dataset = pd.read_excel("data/dataset inflasi indonesia.xlsx")
